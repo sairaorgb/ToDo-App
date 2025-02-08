@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:mk_todo/utils/alertDialog.dart';
 import 'package:mk_todo/utils/tasktile.dart';
 
@@ -10,10 +12,14 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
+  var mybox = Hive.box('myBox');
+
   List _tasks = [
     ["task 1", true],
     ["task 2", false]
   ];
+
+  TextEditingController myController = TextEditingController();
 
   void onChanged(int index) {
     setState(() {
@@ -24,6 +30,14 @@ class _HomepageState extends State<Homepage> {
   void deleteTask(int index) {
     setState(() {
       _tasks.removeAt(index);
+    });
+  }
+
+  void onsave(String name) {
+    setState(() {
+      _tasks.add([name, false]);
+      myController.clear();
+      Navigator.pop(context);
     });
   }
 
@@ -39,9 +53,16 @@ class _HomepageState extends State<Homepage> {
         backgroundColor: Colors.yellow,
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {return showDialog( context: BuildContexte,builder:(context) {
-          return alerDialog()
-        },)},
+        onPressed: () => showDialog(
+          context: context,
+          builder: (context) {
+            return alerDialog(
+              onCancel: () => Navigator.pop(context),
+              onSave: (String name) => onsave(name),
+              taskController: myController,
+            );
+          },
+        ),
         backgroundColor: Colors.yellow,
         child: Icon(
           Icons.add,
