@@ -25,7 +25,12 @@ class taskTile extends StatelessWidget {
       ),
       title: Text(
         taskName,
-        style: TextStyle(color: Colors.white, fontSize: 18),
+        style: TextStyle(
+          decoration:
+              checkValue ? TextDecoration.none : TextDecoration.lineThrough,
+          color: Colors.white,
+          fontSize: 18,
+        ),
       ),
       trailing: GestureDetector(
           onTap: () => deleteTask(index), child: Icon(Icons.delete)),

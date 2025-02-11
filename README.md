@@ -1,16 +1,7 @@
-# mk_todo
+This is a To-Do Android app made with flutter, a cross platform development platofrm created by google.
+This To-Do facilitates the users to create tasks through an alert dialog which gets opened when
+the add button in the corner is pressed. user is prompted to enter the task name and subsequent save adds
+the task to home screen. users can check the box against the task if it is completed and then delete them.
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+One important technical thing added to this app is Hive,a local storage unit. Through which the task data 
+can be stored in the device's memory and be able to load it whenever the app is opened.
